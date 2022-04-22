@@ -72,12 +72,13 @@ namespace ConsoleApp.Logger
                 this.disposed = true;
             }
         }
-
         public void Dispose()
         {
             this.Dispose(disposing: true);
 
             GC.SuppressFinalize(this);
         }
+
+
     }
 }

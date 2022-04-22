@@ -8,29 +8,20 @@ namespace lab_3
     public abstract class WriterLogger : ILogger
     {
         protected TextWriter writer;
-        public virtual void Log(params string[] messages)
+ 
+        public virtual void Log(String[] messages)
         {
-            FileStream stream = new FileStream("plik-1.txt", FileMode.Append);
+            String outMessage ="";
 
-            writer = new StreamWriter(stream, Encoding.UTF8);
 
-            // stream and writer should be closed and destroyed when not needed, eg.
-            //
-            //     writer.Close();
-            //     stream.Close();
-            //     writer.Dispose();
-            //     stream.Dispose();
-        }
+            for ( int i = 0; i < messages.Length; ++i)
+            {
+                outMessage += messages[i] + " ";
+            }
 
-        // when we want to write text into console:
-        {
-            writer = Console.Out;
 
-            // writer is not created by programmer so we should not close or destroy it
-        }
+             writer.WriteLineAsync(outMessage);
 
-        writer.Write("Text to write here ...");
-        writer.Flush();
         }
 
         public abstract void Dispose();
